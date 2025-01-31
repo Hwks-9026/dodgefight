@@ -1,9 +1,7 @@
 extern crate core;
 
-use std::cmp::PartialEq;
 use raylib::consts::KeyboardKey::*;
 use raylib::prelude::*;
-use raylib_sys::__bool_true_false_are_defined;
 use crate::file_loader::load_level;
 use crate::player::Player;
 use crate::settings::{Keybinds, Settings};
@@ -71,10 +69,10 @@ fn draw_frame(rl: &mut RaylibHandle, thread: &RaylibThread, settings: &Settings,
 
     player.draw(&mut d);
 
-    if(settings.debug) {draw_debug_hud(&mut d, settings, &thread);}
+    if(settings.debug) {draw_debug_hud(&mut d, settings);}
 }
 
-fn draw_debug_hud(d: &mut RaylibDrawHandle, settings: &Settings, thread: &RaylibThread) {
+fn draw_debug_hud(d: &mut RaylibDrawHandle, settings: &Settings) {
     let current_time = ((d.get_time() * 100.0).round()/100.0).to_string();
     d.draw_text(&(current_time), 10, 10, 30, Color::RED);
     d.draw_text(&(d.get_fps().to_string() + " fps"), 10, 40, 30, Color::RED);

@@ -235,6 +235,5 @@ pub fn key_to_code(key: KeyboardKey) -> u32 {
         KEY_BACK =>4,
         KEY_VOLUME_UP =>24,
         KEY_VOLUME_DOWN =>25,
-        _ => 0,
     }
 }

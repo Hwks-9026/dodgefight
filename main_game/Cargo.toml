@@ -6,6 +6,4 @@ edition = "2021"
 [dependencies]
 raylib = { version = "5.0.2", features = ["custom_frame_control"] }
 raylib-sys = "5.0.2"
-itertools = "0.14.0"
 serde_json = "1.0.138"
-num_enum = "0.7"

@@ -1,8 +1,8 @@
 use raylib::color::Color;
 use raylib::drawing::{RaylibDraw, RaylibDrawHandle};
 use raylib::math::Vector2;
-use crate::player::{Player, State};
-use crate::player::State::{Falling, Grounded, Jumping};
+use crate::player::Player;
+use crate::player::State::Jumping;
 
 pub struct Rectangle {
     pub x: f32,

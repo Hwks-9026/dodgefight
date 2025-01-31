@@ -1,6 +1,5 @@
 extern crate core;
 mod player;
-mod wall;
 mod gameloop;
 mod file_loader;
 mod settings;
