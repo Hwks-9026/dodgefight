@@ -1,10 +1,7 @@
-use std::cmp::PartialEq;
-use raylib::drawing::{RaylibDraw, RaylibDrawHandle};
-use raylib::ease::quad_in;
+use raylib::drawing::{RaylibDrawHandle};
 use raylib::math::Vector2;
 use raylib::prelude::Color;
 use raylib::RaylibHandle;
-use raylib_sys::KeyboardKey::KEY_DOWN;
 use crate::game_resources::Rectangle;
 use crate::settings::{Keybinds, Settings};
 
@@ -118,7 +115,7 @@ impl Player {
     fn update_noclip(&mut self, rl: &RaylibHandle, settings: &Settings, dt: f32) {
         self.vel = Vector2::zero();
         let move_vector: Vector2 = self.create_input_vector(rl, settings);
-        self.vel += move_vector * PLAYER_SPEED;
+        self.vel += move_vector * PLAYER_SPEED * dt;
     }
 
     fn update_falling(&mut self, rl: &RaylibHandle, settings: &Settings, dt: f32) {
