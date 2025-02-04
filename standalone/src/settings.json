@@ -1,0 +1,26 @@
+{
+  "debug": false,
+  "fullscreen": false,
+  "target_resolution": {
+    "width": 1920,
+    "height": 1080
+  },
+  "target_fps": 120,
+  "keybinds_1": {
+    "up": 87,
+    "down": 83,
+    "left": 65,
+    "right": 68,
+    "jump": 87,
+    "dash": 340
+  },
+  "keybinds_2": {
+    "up": 265,
+    "down": 264,
+    "left": 263,
+    "right": 262,
+    "jump": 265,
+    "dash": 340
+  }
+
+}

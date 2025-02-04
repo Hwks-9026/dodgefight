@@ -1,0 +1,14 @@
+/home/davis/RustroverProjects/dodgefight/server/target/debug/deps/libclang_sys-c87f32507632e696.rmeta: /home/davis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/clang-sys-1.8.1/src/lib.rs /home/davis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/clang-sys-1.8.1/src/support.rs /home/davis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/clang-sys-1.8.1/src/link.rs /home/davis/RustroverProjects/dodgefight/server/target/debug/build/clang-sys-89c2f4634d1919ac/out/macros.rs /home/davis/RustroverProjects/dodgefight/server/target/debug/build/clang-sys-89c2f4634d1919ac/out/common.rs /home/davis/RustroverProjects/dodgefight/server/target/debug/build/clang-sys-89c2f4634d1919ac/out/dynamic.rs
+
+/home/davis/RustroverProjects/dodgefight/server/target/debug/deps/libclang_sys-c87f32507632e696.rlib: /home/davis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/clang-sys-1.8.1/src/lib.rs /home/davis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/clang-sys-1.8.1/src/support.rs /home/davis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/clang-sys-1.8.1/src/link.rs /home/davis/RustroverProjects/dodgefight/server/target/debug/build/clang-sys-89c2f4634d1919ac/out/macros.rs /home/davis/RustroverProjects/dodgefight/server/target/debug/build/clang-sys-89c2f4634d1919ac/out/common.rs /home/davis/RustroverProjects/dodgefight/server/target/debug/build/clang-sys-89c2f4634d1919ac/out/dynamic.rs
+
+/home/davis/RustroverProjects/dodgefight/server/target/debug/deps/clang_sys-c87f32507632e696.d: /home/davis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/clang-sys-1.8.1/src/lib.rs /home/davis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/clang-sys-1.8.1/src/support.rs /home/davis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/clang-sys-1.8.1/src/link.rs /home/davis/RustroverProjects/dodgefight/server/target/debug/build/clang-sys-89c2f4634d1919ac/out/macros.rs /home/davis/RustroverProjects/dodgefight/server/target/debug/build/clang-sys-89c2f4634d1919ac/out/common.rs /home/davis/RustroverProjects/dodgefight/server/target/debug/build/clang-sys-89c2f4634d1919ac/out/dynamic.rs
+
+/home/davis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/clang-sys-1.8.1/src/lib.rs:
+/home/davis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/clang-sys-1.8.1/src/support.rs:
+/home/davis/.cargo/registry/src/index.crates.io-6f17d22bba15001f/clang-sys-1.8.1/src/link.rs:
+/home/davis/RustroverProjects/dodgefight/server/target/debug/build/clang-sys-89c2f4634d1919ac/out/macros.rs:
+/home/davis/RustroverProjects/dodgefight/server/target/debug/build/clang-sys-89c2f4634d1919ac/out/common.rs:
+/home/davis/RustroverProjects/dodgefight/server/target/debug/build/clang-sys-89c2f4634d1919ac/out/dynamic.rs:
+
+# env-dep:OUT_DIR=/home/davis/RustroverProjects/dodgefight/server/target/debug/build/clang-sys-89c2f4634d1919ac/out

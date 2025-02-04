@@ -1,0 +1,7 @@
+/home/davis/RustroverProjects/dodgefight/server/target/debug/build/raylib-sys-0323abbbdadb5e6d/out/lib/libraylib.a
+/home/davis/RustroverProjects/dodgefight/server/target/debug/build/raylib-sys-0323abbbdadb5e6d/out/include/raylib.h
+/home/davis/RustroverProjects/dodgefight/server/target/debug/build/raylib-sys-0323abbbdadb5e6d/out/include/rlgl.h
+/home/davis/RustroverProjects/dodgefight/server/target/debug/build/raylib-sys-0323abbbdadb5e6d/out/include/raymath.h
+/home/davis/RustroverProjects/dodgefight/server/target/debug/build/raylib-sys-0323abbbdadb5e6d/out/lib/pkgconfig/raylib.pc
+/home/davis/RustroverProjects/dodgefight/server/target/debug/build/raylib-sys-0323abbbdadb5e6d/out/lib/cmake/raylib/raylib-config-version.cmake
+/home/davis/RustroverProjects/dodgefight/server/target/debug/build/raylib-sys-0323abbbdadb5e6d/out/lib/cmake/raylib/raylib-config.cmake
