@@ -1,11 +1,9 @@
 extern crate core;
 
-use std::cmp::PartialEq;
 use std::io::{Read, Write};
 use std::net::TcpStream;
 use raylib::consts::KeyboardKey::*;
 use raylib::prelude::*;
-use raylib_sys::__bool_true_false_are_defined;
 use crate::file_loader::load_level;
 use crate::settings::{Keybinds, Settings};
 use crate::game_resources::Rectangle;
@@ -27,11 +25,8 @@ pub(crate) unsafe fn game_loop(mut rl: RaylibHandle, mut thread: RaylibThread, s
         _ = stream.flush().expect("Could not flush stream");
         let mut read_buffer = [0; 4096];
         stream.read(&mut read_buffer).expect("Could not read from server");
-        let result: String = String::from_utf8_lossy(&*Vec::from(&read_buffer[..])).trim_end_matches(char::from(0)).to_string();
-
-
-
-
+        let mut result: &str = &*String::from_utf8_lossy(&*Vec::from(&read_buffer[..])).to_string();
+        result = result.trim_matches(char::from(0));
         draw_frame(&mut rl, &thread, &settings, &load_level(result));
     }
 }
@@ -44,10 +39,10 @@ fn draw_frame(rl: &mut RaylibHandle, thread: &RaylibThread, settings: &Settings,
         r.draw(&mut d);
     }
 
-    if(settings.debug) {draw_debug_hud(&mut d, settings, &thread);}
+    if(settings.debug) {draw_debug_hud(&mut d, settings);}
 }
 
-fn draw_debug_hud(d: &mut RaylibDrawHandle, settings: &Settings, thread: &RaylibThread) {
+fn draw_debug_hud(d: &mut RaylibDrawHandle, settings: &Settings) {
     let current_time = ((d.get_time() * 100.0).round()/100.0).to_string();
     d.draw_text(&(current_time), 10, 10, 30, Color::RED);
     d.draw_text(&(d.get_fps().to_string() + " fps"), 10, 40, 30, Color::RED);

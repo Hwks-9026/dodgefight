@@ -1,6 +1,5 @@
 use raylib::color::Color;
 use raylib::drawing::RaylibDrawHandle;
-use raylib::RaylibHandle;
 use raylib::math::Vector2;
 use raylib_sys::KeyboardKey::*;
 use crate::game_resources::{PlayerHitbox, Rectangle};
@@ -70,7 +69,7 @@ impl PlayerSimple {
         }
     }
 
-    pub fn update(&mut self, inputs: [i32; 4], level_data: &Vec<Rectangle>) {
+    pub fn update(&mut self, inputs: Vec<i32>, level_data: &Vec<Rectangle>) {
 
         if(self.hitbox.hitbox.y > 1500.0 ) {
             self.hitbox.hitbox.x = 130.0;
@@ -134,7 +133,6 @@ impl PlayerSimple {
             self.x_speed = 0.0;
         }
         else {
-            println!("{}", self.wall_jump_coyote_timer);
             if self.wall_jump_coyote_timer > 0 {
                 self.wall_jump_coyote_timer -= 1;
             }

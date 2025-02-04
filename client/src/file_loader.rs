@@ -1,5 +1,4 @@
-use serde_json::{Result, Value};
-use std::fs::File;
+use serde_json::Value;
 use raylib::color::Color;
 use crate::game_resources::Rectangle;
 use crate::settings::Settings;
@@ -12,14 +11,12 @@ pub(crate) fn load_settings() -> Settings {
     )
 }
 
-pub(crate) fn load_level(packet_data: String) -> Vec<Rectangle>{
-    println!("Loading level...");
+pub(crate) fn load_level(packet_data: &str) -> Vec<Rectangle>{
     let mut level: Vec<Rectangle> = Vec::new();
-
-    let v: Value = serde_json::from_str(&*packet_data).unwrap();
+    let v: Value = serde_json::from_str(packet_data).unwrap();
     let num_hitboxes = v["length"].as_i64().unwrap();
     let mut count: i32 = 1;
-    let p_d= &v[count.to_string()];
+
     while level.len() < num_hitboxes as usize {
         let p_d= &v[count.to_string()];
         level.push(Rectangle::new(p_d["x"].as_f64().unwrap() as f32,
