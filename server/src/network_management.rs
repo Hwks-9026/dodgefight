@@ -1,12 +1,10 @@
 use std::io::{Read, Write};
 use std::net::{TcpListener, TcpStream};
-use std::thread::sleep;
-use std::time::{Duration, Instant};
+use std::time::{Instant};
 use itertools::Itertools;
 use raylib::math::Vector2;
 use crate::file_loader::load_level;
 use crate::game_resources::Rectangle;
-use crate::player_simple;
 use crate::player_simple::PlayerSimple;
 
 const LEVEL: &str = include_str!("level1.json");
@@ -25,7 +23,7 @@ pub(crate) fn start() {
         prev_update_time = Instant::now();
         match stream {
             Ok(stream) => {
-                handle_client(stream, &mut players, &level_data, &server_start_time);
+                handle_client(stream, &mut players);
 
             }
             Err(e) => { eprintln!("Failed to establish connection: {}", e); }
@@ -33,8 +31,7 @@ pub(crate) fn start() {
     }
 }
 
-fn handle_client(mut stream: TcpStream, mut players: &mut Vec<PlayerSimple>, level_data: &Vec<Rectangle>, server_start_time: &Instant) {
-    let time_1 = server_start_time.elapsed().as_millis();
+fn handle_client(mut stream: TcpStream, mut players: &mut Vec<PlayerSimple>) {
     let mut buffer = [0; 256];
     stream.read(&mut buffer).expect("Could not read from stream");
     let mut request = String::from_utf8_lossy(&buffer[..]).to_string();

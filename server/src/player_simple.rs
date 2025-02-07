@@ -197,7 +197,7 @@ impl PlayerSimple {
             self.jump_hold_timer = 0.0;
         }
         if(self.jump_hold_timer > 0.0) {
-            self.jump_hold_timer -= 1.0 * dt as f32 / 8333333.0; ;
+            self.jump_hold_timer -= 1.0 * dt as f32 / 8333333.0;
             self.y_speed = -1.0 * compute_jump_height(self.jump_hold_timer);
         }
         println!("{}", self.jump_hold_timer);

@@ -1,8 +1,6 @@
 use raylib::color::Color;
 use raylib::drawing::{RaylibDraw, RaylibDrawHandle};
 use raylib::math::Vector2;
-use raylib_sys::rlSetFramebufferHeight;
-use crate::player_simple::PlayerSimple;
 #[derive(Clone, Debug)]
 pub struct PlayerHitbox {
     pub hitbox: Rectangle,
