@@ -9,7 +9,23 @@
     <cargoProject FILE="$PROJECT_DIR$/standalone/Cargo.toml" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="70770773-8c10-4741-89ca-a6521968e789" name="Changes" comment="MULTIPLAYER CONNECTIONS WORKING!!!!!&#10;multiple players can all join and see each other moving around." />
+    <list default="true" id="70770773-8c10-4741-89ca-a6521968e789" name="Changes" comment="MULTIPLAYER CONNECTIONS WORKING!!!!!&#10;multiple players can all join and see each other moving around.">
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/file_loader.rs" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/file_loader.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/game_resources.rs" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/game_resources.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/gameloop.rs" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gameloop.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/keycode_conversion.rs" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/keycode_conversion.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/settings.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/client/src/settings.rs" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/settings.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/game_resources.rs" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/game_resources.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/network_management.rs" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/network_management.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/player_simple.rs" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/player_simple.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/standalone/src/keycode_conversion.rs" beforeDir="false" afterPath="$PROJECT_DIR$/standalone/src/keycode_conversion.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/standalone/target/.rustc_info.json" beforeDir="false" afterPath="$PROJECT_DIR$/standalone/target/.rustc_info.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -84,7 +100,7 @@
       <recent name="$PROJECT_DIR$/main_game/levels" />
     </key>
   </component>
-  <component name="RunManager" selected="Cargo.Run client">
+  <component name="RunManager" selected="Cargo.Run standalone">
     <configuration name="Run client" type="CargoCommandRunConfiguration" factoryName="Cargo Command" temporary="true">
       <option name="command" value="run --package client --bin client" />
       <option name="workingDirectory" value="file://$PROJECT_DIR$/client" />
@@ -162,9 +178,9 @@
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Cargo.Run standalone" />
         <item itemvalue="Cargo.Run client" />
         <item itemvalue="Cargo.Run server" />
-        <item itemvalue="Cargo.Run standalone" />
       </list>
     </recent_temporary>
   </component>
@@ -193,6 +209,7 @@
       <workItem from="1738866813176" duration="1132000" />
       <workItem from="1738880445118" duration="6549000" />
       <workItem from="1738961649210" duration="757000" />
+      <workItem from="1738963439943" duration="4178000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />

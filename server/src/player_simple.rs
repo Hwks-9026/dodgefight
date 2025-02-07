@@ -1,7 +1,5 @@
 use raylib::color::Color;
-use raylib::drawing::RaylibDrawHandle;
 use raylib::math::Vector2;
-use raylib_sys::KeyboardKey::*;
 use crate::game_resources::{PlayerHitbox, Rectangle};
 const SUBPIXEL: f32 = 0.5;
 const BUFFERTIME: i32 = 15;
@@ -11,8 +9,6 @@ const COYOTEHANGFRAMES: i32 = 2;
 const COYOTEJUMPFRAMES: i32 = 16;
 #[derive(Debug, Clone)]
 pub struct PlayerSimple {
-    pub(crate) which_player: u32,
-    health: f64,
     //movement
     move_dir: i32,
     last_move_dir: i32,
@@ -46,10 +42,8 @@ pub struct PlayerSimple {
 }
 
 impl PlayerSimple {
-    pub fn new(starting_pos: Vector2, player_number: u32) -> PlayerSimple {
+    pub fn new(starting_pos: Vector2) -> PlayerSimple {
         let mut new = PlayerSimple {
-            which_player: player_number,
-            health: 1200.0,
             move_dir: 0,
             last_move_dir: 1,
             move_speed: 7.0,
@@ -111,7 +105,7 @@ impl PlayerSimple {
         self.x_update(level_data, dt);
         self.y_update(level_data, jump_key, dt);
 
-        if(self.jump_count > 1) {self.hitbox.hitbox.color = Color::YELLOW;}
+        if self.jump_count > 1 {self.hitbox.hitbox.color = Color::YELLOW;}
         else { self.hitbox.hitbox.color = Color::RED; }
 
     }
@@ -120,7 +114,7 @@ impl PlayerSimple {
         if(self.x_speed.abs() < self.move_speed.abs()) && self.move_dir != 0 {
             self.x_speed = self.move_dir as f32 * 0.1 * self.move_speed + 0.95 * self.x_speed;
         }
-        else if (self.move_dir != 0){
+        else if self.move_dir != 0 {
             self.x_speed = self.move_dir as f32 * self.move_speed;
 
         }
@@ -164,7 +158,7 @@ impl PlayerSimple {
         }
 
 
-        if (self.on_ground) {
+        if self.on_ground {
             self.jump_count = 0;
             self.coyote_jump_timer = COYOTEJUMPFRAMES;
         }
@@ -175,10 +169,10 @@ impl PlayerSimple {
             }
         }
 
-        if(self.y_speed > self.terminal_velocity) { self.y_speed = self.terminal_velocity; }
+        if self.y_speed > self.terminal_velocity { self.y_speed = self.terminal_velocity; }
 
         //Initiate Jump
-        if (self.jump_key_buffered && (self.jump_count < MAXJUMPS || self.can_wall_jump != 0)) {
+        if self.jump_key_buffered && (self.jump_count < MAXJUMPS || self.can_wall_jump != 0) {
             self.jump_key_buffered = false;
             self.jump_key_timer = 0;
 
@@ -196,7 +190,7 @@ impl PlayerSimple {
         if !(jump_key) {
             self.jump_hold_timer = 0.0;
         }
-        if(self.jump_hold_timer > 0.0) {
+        if self.jump_hold_timer > 0.0 {
             self.jump_hold_timer -= 1.0 * dt as f32 / 8333333.0;
             self.y_speed = -1.0 * compute_jump_height(self.jump_hold_timer);
         }
@@ -236,7 +230,7 @@ impl PlayerSimple {
             let mut test_x = x;
             if rect.y + rect.height < y {
                 test_y = y - self.hitbox.hitbox.height;
-                if(test_y < rect.y + rect.height) {
+                if test_y < rect.y + rect.height {
                     test_y = rect.y + (rect.height/2.0);
                 }
             }
@@ -255,23 +249,10 @@ impl PlayerSimple {
         }
         false
     }
-
-    pub fn draw(&mut self, d: &mut RaylibDrawHandle) {
-        self.hitbox.hitbox.draw(d)
-    }
-}
-
-
-
-fn to_1_0(b: bool) -> i32 {
-    match b {
-        true => 1,
-        false => 0,
-    }
 }
 
 fn compute_jump_height(current_frame: f32) -> f32 {
-    let x = (JUMPHOLDFRAMES - current_frame);
+    let x = JUMPHOLDFRAMES - current_frame;
     25.0 * (1.0 / (1.0 + (-0.2 * x).exp()) - 0.5)
 
     /*

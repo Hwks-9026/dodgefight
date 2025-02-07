@@ -10,7 +10,7 @@ macro_rules! invert_match {
     };
 }
 
-pub fn code_to_key(i: i32) -> Option<raylib_sys::KeyboardKey>{
+pub fn code_to_key(i: i32) -> Option<KeyboardKey>{
     let input = i;
     invert_match!(input,
         KEY_NULL => 0,
@@ -235,6 +235,5 @@ pub fn key_to_code(key: KeyboardKey) -> u32 {
         KEY_BACK =>4,
         KEY_VOLUME_UP =>24,
         KEY_VOLUME_DOWN =>25,
-        _ => 0,
     }
 }

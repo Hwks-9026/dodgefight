@@ -1,6 +1,6 @@
 {
   "debug": false,
-  "fullscreen": false,
+  "fullscreen": true,
   "target_resolution": {
     "width": 1920,
     "height": 1080

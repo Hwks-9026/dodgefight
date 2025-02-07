@@ -2,16 +2,16 @@ extern crate core;
 
 use std::io::{Read, Write};
 use std::net::TcpStream;
-use raylib::consts::KeyboardKey::*;
 use raylib::prelude::*;
 use crate::file_loader::load_level;
 use crate::settings::{Keybinds, Settings};
 use crate::game_resources::Rectangle;
 
 
-pub(crate) unsafe fn game_loop(mut rl: RaylibHandle, mut thread: RaylibThread, settings: Settings) {
+pub(crate) fn game_loop(mut rl: RaylibHandle, thread: RaylibThread, settings: Settings) {
     let binds = &settings.keybinds;
     let mut player_number: u8 = 0;
+    if settings.fullscreen {rl.toggle_fullscreen()}
     while !rl.window_should_close() {
 
         let mut packet: String = "".to_string();
@@ -20,7 +20,6 @@ pub(crate) unsafe fn game_loop(mut rl: RaylibHandle, mut thread: RaylibThread, s
         packet += &*to_1_0(rl.is_key_pressed(binds.jump)).to_string();
         packet += &*to_1_0(rl.is_key_down(binds.jump)).to_string();
         packet += &*(player_number).to_string();
-        println!("{}", packet);
         let mut stream: TcpStream = TcpStream::connect("127.0.0.1:9999").expect("Could not connect to server");
         _ = stream.write(packet.as_bytes());
         _ = stream.flush().expect("Could not flush stream");
@@ -52,10 +51,10 @@ fn draw_frame(rl: &mut RaylibHandle, thread: &RaylibThread, settings: &Settings,
     d.clear_background(Color::BLACK);
 
     for r in level_data {
-        r.draw(&mut d);
+        d.draw_rectangle(r.x as i32, r.y as i32, r.width as i32, r.height as i32, r.color);
     }
 
-    if(settings.debug) {draw_debug_hud(&mut d, settings);}
+    if settings.debug {draw_debug_hud(&mut d, settings);}
 }
 
 fn draw_debug_hud(d: &mut RaylibDrawHandle, settings: &Settings) {

@@ -29,7 +29,7 @@ pub(crate) struct Keybinds {
     pub(crate) left: KeyboardKey,
     pub(crate) right: KeyboardKey,
     pub(crate) jump: KeyboardKey,
-    pub(crate) dash: KeyboardKey
+    pub(crate) _dash: KeyboardKey
 }
 
 
@@ -42,7 +42,7 @@ impl Keybinds {
             left: code_to_key(option_i64_to_i32(left)).unwrap(),
             right: code_to_key(option_i64_to_i32(right)).unwrap(),
             jump: code_to_key(option_i64_to_i32(jump)).unwrap(),
-            dash: code_to_key(option_i64_to_i32(dash)).unwrap()
+            _dash: code_to_key(option_i64_to_i32(dash)).unwrap()
         }
     }
 }

@@ -7,7 +7,6 @@ use crate::file_loader::load_level;
 use crate::game_resources::Rectangle;
 use crate::player_simple::PlayerSimple;
 
-const LEVEL: &str = include_str!("level1.json");
 const LEVELTOTRANSMIT: &str = include_str!("level1ForNetworking.txt");
 
 pub(crate) fn start() {
@@ -30,13 +29,13 @@ pub(crate) fn start() {
     }
 }
 
-fn handle_client(mut stream: TcpStream, mut players: &mut Vec<PlayerSimple>) {
+fn handle_client(mut stream: TcpStream, players: &mut Vec<PlayerSimple>) {
     let mut buffer = [0; 256];
     stream.read(&mut buffer).expect("Could not read from stream");
     let mut request = String::from_utf8_lossy(&buffer[..]).to_string();
-    request = (request.trim_end_matches(char::from(0))).to_string();
+    request = request.trim_end_matches(char::from(0)).to_string();
     let breakout_test = request.chars().collect_vec();
-    if(breakout_test[0] == '!') {
+    if breakout_test[0] == '!' {
         println!("Got !!");
         players.remove(breakout_test[1].to_digit(10).unwrap() as usize - 1);
         return;
@@ -45,18 +44,18 @@ fn handle_client(mut stream: TcpStream, mut players: &mut Vec<PlayerSimple>) {
     let inputs = request_vec.split_at(4);
     let mut player_number: usize = inputs.1[0] as usize;
 
-    if(player_number == 0) {
+    if player_number == 0 {
         player_number = (players.len() + 1) as usize;
-        players.push(PlayerSimple::new(Vector2::new(500.0, 500.0), player_number as u32));
+        players.push(PlayerSimple::new(Vector2::new(500.0, 500.0)));
     }
-    if(player_number > 0) {
+    if player_number > 0 {
         players[player_number - 1].set_inputs(inputs.0);
     }
 
 
 
     let mut final_output: String = player_number.to_string() + "|";
-    final_output = (final_output.to_string() + LEVELTOTRANSMIT);
+    final_output = final_output.to_string() + LEVELTOTRANSMIT;
     for i in 0..players.len() {
         let ph = &players[i].hitbox.hitbox;
         final_output += &*("\"".to_owned() + &*(i + 7).to_string() + "\" : {\n");
@@ -81,9 +80,17 @@ fn handle_client(mut stream: TcpStream, mut players: &mut Vec<PlayerSimple>) {
     stream.write(response).expect("Could not write to stream");
 }
 
-fn update_players(mut players: &mut Vec<PlayerSimple>, level: &Vec<Rectangle>, dt: u128) {
+fn update_players(players: &mut Vec<PlayerSimple>, level: &Vec<Rectangle>, dt: u128) {
     for i in 0..players.len() {
-        players[i].update(level, dt);
+        let mut level_clone = level.clone();
+        for j in 0..i {
+            level_clone.push(players[j].hitbox.hitbox.clone());
+        }
+        for k in i+1..players.len() {
+            level_clone.push(players[k].hitbox.hitbox.clone());
+
+        }
+        players[i].update(&level_clone, dt);
     }
 }
 
