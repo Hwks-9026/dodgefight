@@ -15,6 +15,7 @@ pub(crate) fn load_level(packet_data: &str) -> Vec<Rectangle>{
     let mut level: Vec<Rectangle> = Vec::new();
     let v: Value = serde_json::from_str(packet_data).unwrap();
     let num_hitboxes = v["length"].as_i64().unwrap();
+    println!("{}", num_hitboxes);
     let mut count: i32 = 1;
 
     while level.len() < num_hitboxes as usize {

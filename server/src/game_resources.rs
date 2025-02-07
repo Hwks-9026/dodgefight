@@ -3,7 +3,7 @@ use raylib::drawing::{RaylibDraw, RaylibDrawHandle};
 use raylib::math::Vector2;
 use raylib_sys::rlSetFramebufferHeight;
 use crate::player_simple::PlayerSimple;
-
+#[derive(Clone, Debug)]
 pub struct PlayerHitbox {
     pub hitbox: Rectangle,
 }
@@ -35,13 +35,28 @@ impl PlayerHitbox {
         Vector2::new(self.hitbox.x + (self.hitbox.width * 0.5), self.hitbox.y + self.hitbox.height)
     }
 }
-
+#[derive(Clone, Debug)]
 pub struct Rectangle {
     pub x: f32,
     pub y: f32,
     pub width: f32,
     pub height: f32,
     pub color: Color
+}
+
+impl Rectangle {
+    pub(crate) fn equals(&self, p0: &Rectangle) -> bool {
+        if self.x != p0.x || self.y != p0.y {
+            return false;
+        }
+        if self.width != p0.width || self.height != p0.height {
+            return false;
+        }
+        if self.color != p0.color {
+            return false;
+        }
+        true
+    }
 }
 
 impl Rectangle {

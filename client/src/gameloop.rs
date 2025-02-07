@@ -11,7 +11,7 @@ use crate::game_resources::Rectangle;
 
 pub(crate) unsafe fn game_loop(mut rl: RaylibHandle, mut thread: RaylibThread, settings: Settings) {
     let binds = &settings.keybinds;
-
+    let mut player_number: u8 = 0;
     while !rl.window_should_close() {
 
         let mut packet: String = "".to_string();
@@ -19,7 +19,8 @@ pub(crate) unsafe fn game_loop(mut rl: RaylibHandle, mut thread: RaylibThread, s
         packet += &*to_1_0(rl.is_key_down(binds.right)).to_string();
         packet += &*to_1_0(rl.is_key_pressed(binds.jump)).to_string();
         packet += &*to_1_0(rl.is_key_down(binds.jump)).to_string();
-
+        packet += &*(player_number).to_string();
+        println!("{}", packet);
         let mut stream: TcpStream = TcpStream::connect("127.0.0.1:9999").expect("Could not connect to server");
         _ = stream.write(packet.as_bytes());
         _ = stream.flush().expect("Could not flush stream");
@@ -27,10 +28,25 @@ pub(crate) unsafe fn game_loop(mut rl: RaylibHandle, mut thread: RaylibThread, s
         stream.read(&mut read_buffer).expect("Could not read from server");
         let mut result: &str = &*String::from_utf8_lossy(&*Vec::from(&read_buffer[..])).to_string();
         result = result.trim_matches(char::from(0));
-        draw_frame(&mut rl, &thread, &settings, &load_level(result));
-    }
-}
+        let mut segment: usize = 0;
+        for result_element in result.split("|") {
+            match segment {
+                0 => if player_number == 0 {player_number = result_element.parse().unwrap();}
+                1 => draw_frame(&mut rl, &thread, &settings, &load_level(result_element)),
+                _ => {}
+            }
+            segment += 1;
 
+        }
+    }
+    terminate_connection(player_number);
+}
+fn terminate_connection(player_number: u8) {
+    let mut stream = TcpStream::connect("127.0.0.1:9999").expect("Could not connect to server");
+    let packet: String = "!".to_string() + &player_number.to_string();
+    _ = stream.write(packet.as_bytes());
+    _ = stream.flush().expect("Could not flush stream");
+}
 fn draw_frame(rl: &mut RaylibHandle, thread: &RaylibThread, settings: &Settings, level_data: &Vec<Rectangle>) {
     let mut d: RaylibDrawHandle = rl.begin_drawing(&thread);
     d.clear_background(Color::BLACK);

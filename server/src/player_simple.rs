@@ -6,11 +6,12 @@ use crate::game_resources::{PlayerHitbox, Rectangle};
 const SUBPIXEL: f32 = 0.5;
 const BUFFERTIME: i32 = 15;
 const MAXJUMPS: i32 = 2;
-const JUMPHOLDFRAMES: i32 = 16;
+const JUMPHOLDFRAMES: f32 = 16.0;
 const COYOTEHANGFRAMES: i32 = 2;
 const COYOTEJUMPFRAMES: i32 = 16;
+#[derive(Debug, Clone)]
 pub struct PlayerSimple {
-    which_player: i32,
+    pub(crate) which_player: u32,
     health: f64,
     //movement
     move_dir: i32,
@@ -27,7 +28,7 @@ pub struct PlayerSimple {
 
     //double jumps
     jump_count: i32,
-    jump_hold_timer: i32,
+    jump_hold_timer: f32,
     on_ground: bool,
 
     //wall jumps
@@ -38,15 +39,15 @@ pub struct PlayerSimple {
     coyote_hang_timer: i32,
     coyote_jump_timer: i32,
 
-
+    inputs: Vec<i32>,
     pub(crate) hitbox: PlayerHitbox,
 
 
 }
 
 impl PlayerSimple {
-    pub fn new(starting_pos: Vector2, player_number: i32) -> PlayerSimple {
-        PlayerSimple {
+    pub fn new(starting_pos: Vector2, player_number: u32) -> PlayerSimple {
+        let mut new = PlayerSimple {
             which_player: player_number,
             health: 1200.0,
             move_dir: 0,
@@ -59,28 +60,39 @@ impl PlayerSimple {
             jump_key_buffered: false,
             jump_key_timer: 0,
             jump_count: 2,
-            jump_hold_timer: 0,
+            jump_hold_timer: 0.0,
             on_ground: false,
             can_wall_jump: 0,
             wall_jump_coyote_timer: 0,
             coyote_hang_timer: 0,
             coyote_jump_timer: 0,
+            inputs: Vec::new(),
             hitbox: PlayerHitbox::new(starting_pos.x, starting_pos.y, 50.0, 100.0, Color::RED)
-        }
+        };
+        new.inputs.push(0);
+        new.inputs.push(0);
+        new.inputs.push(0);
+        new.inputs.push(0);
+        new
+
+
     }
 
-    pub fn update(&mut self, inputs: Vec<i32>, level_data: &Vec<Rectangle>) {
+    pub fn set_inputs(&mut self, inputs: &[i32]) {
+        self.inputs = inputs.to_vec();
+    }
 
+    pub fn update(&mut self, level_data: &Vec<Rectangle>, dt: u128) {
+        /*
         if(self.hitbox.hitbox.y > 1500.0 ) {
             self.hitbox.hitbox.x = 130.0;
             self.hitbox.hitbox.y = 800.0;
         }
-
-        let left_key = inputs[0];
-        let right_key = inputs[1];
-        let jump_key_pressed = match inputs[2] {1 => true, _ => false};
-        let jump_key = match inputs[3] {1 => true, _ => false};
-
+        */
+        let left_key = self.inputs[0];
+        let right_key = self.inputs[1];
+        let jump_key_pressed = match self.inputs[2] {1 => true, _ => false};
+        let jump_key = match self.inputs[3] {1 => true, _ => false};
         self.move_dir = right_key - left_key;
         if self.move_dir != 0 {
             self.last_move_dir = self.move_dir;
@@ -96,31 +108,28 @@ impl PlayerSimple {
             self.jump_key_buffered = false;
         }
 
-        self.x_update(level_data);
-        self.y_update(level_data, jump_key);
+        self.x_update(level_data, dt);
+        self.y_update(level_data, jump_key, dt);
 
         if(self.jump_count > 1) {self.hitbox.hitbox.color = Color::YELLOW;}
         else { self.hitbox.hitbox.color = Color::RED; }
 
     }
 
-    fn x_update(&mut self, level_data: &Vec<Rectangle>) {
-        if(self.x_speed.abs() < self.move_speed.abs()) {
+    fn x_update(&mut self, level_data: &Vec<Rectangle>, dt: u128) {
+        if(self.x_speed.abs() < self.move_speed.abs()) && self.move_dir != 0 {
             self.x_speed = self.move_dir as f32 * 0.1 * self.move_speed + 0.95 * self.x_speed;
         }
         else if (self.move_dir != 0){
             self.x_speed = self.move_dir as f32 * self.move_speed;
+
         }
         else {
             self.x_speed = 0.5 * self.x_speed;
         }
-
-
         let mut pos: Vector2 = self.hitbox.get_pos();
-
         //X Collision:
         if self.colliding(pos.x + self.x_speed, pos.y, level_data) {
-
             let pixel_check = SUBPIXEL * self.x_speed.signum();
 
             while !(self.colliding(pos.x + pixel_check, pos.y, level_data)) {
@@ -140,10 +149,10 @@ impl PlayerSimple {
                 self.can_wall_jump = 0;
             }
         }
-        self.hitbox.move_x(self.x_speed);
+        self.hitbox.move_x(self.x_speed * dt as f32 / 8333333.0);
     }
 
-    fn y_update(&mut self, level_data: &Vec<Rectangle>, jump_key: bool) {
+    fn y_update(&mut self, level_data: &Vec<Rectangle>, jump_key: bool, dt: u128) {
         //Y Movement
         let mut pos: Vector2 = self.hitbox.get_pos();
         if self.coyote_hang_timer < COYOTEHANGFRAMES {
@@ -177,7 +186,6 @@ impl PlayerSimple {
 
             self.jump_hold_timer = JUMPHOLDFRAMES;
             self.set_on_ground(false);
-            println!("{}", self.can_wall_jump);
             match self.can_wall_jump {
                 1 => self.x_speed += 100.0,
                 -1 => self.x_speed -= 100.0,
@@ -186,13 +194,13 @@ impl PlayerSimple {
         }
 
         if !(jump_key) {
-            self.jump_hold_timer = 0;
+            self.jump_hold_timer = 0.0;
         }
-        if(self.jump_hold_timer > 0) {
-            self.jump_hold_timer -= 1;
+        if(self.jump_hold_timer > 0.0) {
+            self.jump_hold_timer -= 1.0 * dt as f32 / 8333333.0; ;
             self.y_speed = -1.0 * compute_jump_height(self.jump_hold_timer);
         }
-
+        println!("{}", self.jump_hold_timer);
 
         if self.colliding(pos.x, pos.y + self.y_speed, level_data) {
 
@@ -209,7 +217,7 @@ impl PlayerSimple {
            self.set_on_ground(true)
         }
 
-        self.hitbox.move_y(self.y_speed);
+        self.hitbox.move_y(self.y_speed * dt as f32 / 8333333.0 );
     }
 
     fn set_on_ground(&mut self, value: bool) {
@@ -242,7 +250,8 @@ impl PlayerSimple {
             }
 
 
-            if rect.place_meeting(test_x, test_y) {return true}
+            if rect.place_meeting(test_x, test_y) {
+                return true}
         }
         false
     }
@@ -261,8 +270,8 @@ fn to_1_0(b: bool) -> i32 {
     }
 }
 
-fn compute_jump_height(current_frame: i32) -> f32 {
-    let x = (JUMPHOLDFRAMES - current_frame) as f32;
+fn compute_jump_height(current_frame: f32) -> f32 {
+    let x = (JUMPHOLDFRAMES - current_frame);
     25.0 * (1.0 / (1.0 + (-0.2 * x).exp()) - 0.5)
 
     /*

@@ -4,21 +4,19 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="CargoProjects">
-    <cargoProject FILE="$PROJECT_DIR$/main_game/Cargo.toml" />
-    <cargoProject FILE="$PROJECT_DIR$/client/client_src/Cargo.toml" />
     <cargoProject FILE="$PROJECT_DIR$/client/Cargo.toml" />
     <cargoProject FILE="$PROJECT_DIR$/server/Cargo.toml" />
     <cargoProject FILE="$PROJECT_DIR$/standalone/Cargo.toml" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="70770773-8c10-4741-89ca-a6521968e789" name="Changes" comment="updated README.md">
-      <change afterPath="$PROJECT_DIR$/server/src/level1ForNetworking.txt" afterDir="false" />
+    <list default="true" id="70770773-8c10-4741-89ca-a6521968e789" name="Changes" comment="Finished client server connections for 1 player">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/file_loader.rs" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/file_loader.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/client/src/gameloop.rs" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gameloop.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/level1.json" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/level1.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/game_resources.rs" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/game_resources.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server/src/level1ForNetworking.txt" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/level1ForNetworking.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/network_management.rs" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/network_management.rs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/server/src/player_simple.rs" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/player_simple.rs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/standalone/target/.rustc_info.json" beforeDir="false" afterPath="$PROJECT_DIR$/standalone/target/.rustc_info.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,28 +56,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Cargo.Run client.executor": "Run",
-    "Cargo.Run server.executor": "Run",
-    "Cargo.Run standalone.executor": "Run",
-    "Cargo.Run.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.rust.reset.selective.auto.import": "true",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/home/davis/RustroverProjects/dodgefight/server/src",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "org.rust.cargo.project.model.PROJECT_DISCOVERY": "true",
-    "org.rust.cargo.project.model.impl.CargoExternalSystemProjectAware.subscribe.first.balloon": "",
-    "org.rust.first.attach.projects": "true",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
+    &quot;Cargo.Run client.executor&quot;: &quot;Run&quot;,
+    &quot;Cargo.Run server.executor&quot;: &quot;Run&quot;,
+    &quot;Cargo.Run standalone.executor&quot;: &quot;Run&quot;,
+    &quot;Cargo.Run.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.rust.reset.selective.auto.import&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/davis/RustroverProjects/dodgefight/server/src&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;org.rust.cargo.project.model.PROJECT_DISCOVERY&quot;: &quot;true&quot;,
+    &quot;org.rust.cargo.project.model.impl.CargoExternalSystemProjectAware.subscribe.first.balloon&quot;: &quot;&quot;,
+    &quot;org.rust.first.attach.projects&quot;: &quot;true&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/server/src" />
@@ -165,9 +164,9 @@
     </configuration>
     <list>
       <item itemvalue="Cargo.Run" />
-      <item itemvalue="Cargo.Run standalone" />
       <item itemvalue="Cargo.Run client" />
       <item itemvalue="Cargo.Run server" />
+      <item itemvalue="Cargo.Run standalone" />
     </list>
     <recent_temporary>
       <list>
@@ -195,7 +194,13 @@
       <workItem from="1738634497539" duration="4399000" />
       <workItem from="1738643598084" duration="626000" />
       <workItem from="1738644243563" duration="1870000" />
-      <workItem from="1738691714502" duration="5155000" />
+      <workItem from="1738691714502" duration="8945000" />
+      <workItem from="1738702945739" duration="13384000" />
+      <workItem from="1738865961186" duration="725000" />
+      <workItem from="1738866692997" duration="113000" />
+      <workItem from="1738866813176" duration="1132000" />
+      <workItem from="1738880445118" duration="6549000" />
+      <workItem from="1738961649210" duration="421000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -277,7 +282,15 @@
       <option name="project" value="LOCAL" />
       <updated>1738692008643</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Finished client server connections for 1 player">
+      <option name="closed" value="true" />
+      <created>1738698454359</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1738698454359</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -290,6 +303,7 @@
     <MESSAGE value="complete rework of structure - will add relevent files from other repo after" />
     <MESSAGE value="Finish client and partially finished server" />
     <MESSAGE value="updated README.md" />
-    <option name="LAST_COMMIT_MESSAGE" value="updated README.md" />
+    <MESSAGE value="Finished client server connections for 1 player" />
+    <option name="LAST_COMMIT_MESSAGE" value="Finished client server connections for 1 player" />
   </component>
 </project>
