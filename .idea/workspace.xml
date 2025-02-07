@@ -9,15 +9,7 @@
     <cargoProject FILE="$PROJECT_DIR$/standalone/Cargo.toml" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="70770773-8c10-4741-89ca-a6521968e789" name="Changes" comment="Finished client server connections for 1 player">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gameloop.rs" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gameloop.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/game_resources.rs" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/game_resources.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/level1ForNetworking.txt" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/level1ForNetworking.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/network_management.rs" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/network_management.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/player_simple.rs" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/player_simple.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/standalone/target/.rustc_info.json" beforeDir="false" afterPath="$PROJECT_DIR$/standalone/target/.rustc_info.json" afterDir="false" />
-    </list>
+    <list default="true" id="70770773-8c10-4741-89ca-a6521968e789" name="Changes" comment="MULTIPLAYER CONNECTIONS WORKING!!!!!&#10;multiple players can all join and see each other moving around." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -200,7 +192,7 @@
       <workItem from="1738866692997" duration="113000" />
       <workItem from="1738866813176" duration="1132000" />
       <workItem from="1738880445118" duration="6549000" />
-      <workItem from="1738961649210" duration="421000" />
+      <workItem from="1738961649210" duration="757000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -290,7 +282,31 @@
       <option name="project" value="LOCAL" />
       <updated>1738698454359</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="MULTIPLAYER CONNECTIONS WORKING!!!!!&#10;multiple players can all join and see each other moving around.">
+      <option name="closed" value="true" />
+      <created>1738962290815</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1738962290815</updated>
+    </task>
+    <task id="LOCAL-00013" summary="MULTIPLAYER CONNECTIONS WORKING!!!!!&#10;multiple players can all join and see each other moving around.">
+      <option name="closed" value="true" />
+      <created>1738962366881</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1738962366881</updated>
+    </task>
+    <task id="LOCAL-00014" summary="MULTIPLAYER CONNECTIONS WORKING!!!!!&#10;multiple players can all join and see each other moving around.">
+      <option name="closed" value="true" />
+      <created>1738962395279</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1738962395279</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -304,6 +320,7 @@
     <MESSAGE value="Finish client and partially finished server" />
     <MESSAGE value="updated README.md" />
     <MESSAGE value="Finished client server connections for 1 player" />
-    <option name="LAST_COMMIT_MESSAGE" value="Finished client server connections for 1 player" />
+    <MESSAGE value="MULTIPLAYER CONNECTIONS WORKING!!!!!&#10;multiple players can all join and see each other moving around." />
+    <option name="LAST_COMMIT_MESSAGE" value="MULTIPLAYER CONNECTIONS WORKING!!!!!&#10;multiple players can all join and see each other moving around." />
   </component>
 </project>
