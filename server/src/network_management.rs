@@ -11,7 +11,6 @@ const LEVEL: &str = include_str!("level1.json");
 const LEVELTOTRANSMIT: &str = include_str!("level1ForNetworking.txt");
 
 pub(crate) fn start() {
-    let server_start_time: Instant = Instant::now();
     let level_data = load_level(1);
     let mut players: Vec<PlayerSimple> = Vec::with_capacity(2);
     let listener = TcpListener::bind("127.0.0.1:9999").expect("Could not bind on port 8080");
