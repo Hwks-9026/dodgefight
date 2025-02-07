@@ -9,22 +9,8 @@
     <cargoProject FILE="$PROJECT_DIR$/standalone/Cargo.toml" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="70770773-8c10-4741-89ca-a6521968e789" name="Changes" comment="MULTIPLAYER CONNECTIONS WORKING!!!!!&#10;multiple players can all join and see each other moving around.">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+    <list default="true" id="70770773-8c10-4741-89ca-a6521968e789" name="Changes" comment="changed .gitnore to ignore .idea files">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/file_loader.rs" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/file_loader.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/game_resources.rs" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/game_resources.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/gameloop.rs" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/gameloop.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/keycode_conversion.rs" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/keycode_conversion.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/main.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/settings.json" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/settings.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/client/src/settings.rs" beforeDir="false" afterPath="$PROJECT_DIR$/client/src/settings.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/game_resources.rs" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/game_resources.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/main.rs" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/main.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/network_management.rs" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/network_management.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server/src/player_simple.rs" beforeDir="false" afterPath="$PROJECT_DIR$/server/src/player_simple.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/standalone/src/keycode_conversion.rs" beforeDir="false" afterPath="$PROJECT_DIR$/standalone/src/keycode_conversion.rs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/standalone/target/.rustc_info.json" beforeDir="false" afterPath="$PROJECT_DIR$/standalone/target/.rustc_info.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,7 +37,7 @@
     <option name="directoryName" value="5qbdVBgT" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="CurrentFile" />
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
@@ -84,6 +70,7 @@
     &quot;org.rust.cargo.project.model.PROJECT_DISCOVERY&quot;: &quot;true&quot;,
     &quot;org.rust.cargo.project.model.impl.CargoExternalSystemProjectAware.subscribe.first.balloon&quot;: &quot;&quot;,
     &quot;org.rust.first.attach.projects&quot;: &quot;true&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -171,10 +158,10 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Cargo.Run" />
       <item itemvalue="Cargo.Run client" />
       <item itemvalue="Cargo.Run server" />
       <item itemvalue="Cargo.Run standalone" />
+      <item itemvalue="Cargo.Run" />
     </list>
     <recent_temporary>
       <list>
@@ -209,7 +196,7 @@
       <workItem from="1738866813176" duration="1132000" />
       <workItem from="1738880445118" duration="6549000" />
       <workItem from="1738961649210" duration="757000" />
-      <workItem from="1738963439943" duration="4178000" />
+      <workItem from="1738963439943" duration="4688000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -323,7 +310,31 @@
       <option name="project" value="LOCAL" />
       <updated>1738962395279</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Fixed all compiler warnings from stylistic errors and unused functions/imports">
+      <option name="closed" value="true" />
+      <created>1738970113047</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1738970113047</updated>
+    </task>
+    <task id="LOCAL-00016" summary="removed duplicated code inspection for rust rover">
+      <option name="closed" value="true" />
+      <created>1738970245603</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1738970245603</updated>
+    </task>
+    <task id="LOCAL-00017" summary="changed .gitnore to ignore .idea files">
+      <option name="closed" value="true" />
+      <created>1738970510438</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1738970510438</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -338,6 +349,9 @@
     <MESSAGE value="updated README.md" />
     <MESSAGE value="Finished client server connections for 1 player" />
     <MESSAGE value="MULTIPLAYER CONNECTIONS WORKING!!!!!&#10;multiple players can all join and see each other moving around." />
-    <option name="LAST_COMMIT_MESSAGE" value="MULTIPLAYER CONNECTIONS WORKING!!!!!&#10;multiple players can all join and see each other moving around." />
+    <MESSAGE value="Fixed all compiler warnings from stylistic errors and unused functions/imports" />
+    <MESSAGE value="removed duplicated code inspection for rust rover" />
+    <MESSAGE value="changed .gitnore to ignore .idea files" />
+    <option name="LAST_COMMIT_MESSAGE" value="changed .gitnore to ignore .idea files" />
   </component>
 </project>
