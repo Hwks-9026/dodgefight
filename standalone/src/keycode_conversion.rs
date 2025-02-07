@@ -10,7 +10,7 @@ macro_rules! invert_match {
     };
 }
 
-pub fn code_to_key(i: i32) -> Option<KeyboardKey>{
+pub fn code_to_key(i: i32) -> Option<KeyboardKey> {
     let input = i;
     invert_match!(input,
         KEY_NULL => 0,
@@ -219,21 +219,21 @@ pub fn key_to_code(key: KeyboardKey) -> u32 {
         KEY_KP_1 => 321,
         KEY_KP_2 => 322,
         KEY_KP_3 => 323,
-        KEY_KP_4 =>324,
-        KEY_KP_5 =>325,
-        KEY_KP_6 =>326,
-        KEY_KP_7 =>327,
-        KEY_KP_8 =>328,
-        KEY_KP_9 =>329,
-        KEY_KP_DECIMAL =>330,
-        KEY_KP_DIVIDE =>331,
-        KEY_KP_MULTIPLY =>332,
-        KEY_KP_SUBTRACT =>333,
-        KEY_KP_ADD =>334,
-        KEY_KP_ENTER =>335,
-        KEY_KP_EQUAL =>336,
-        KEY_BACK =>4,
-        KEY_VOLUME_UP =>24,
-        KEY_VOLUME_DOWN =>25,
+        KEY_KP_4 => 324,
+        KEY_KP_5 => 325,
+        KEY_KP_6 => 326,
+        KEY_KP_7 => 327,
+        KEY_KP_8 => 328,
+        KEY_KP_9 => 329,
+        KEY_KP_DECIMAL => 330,
+        KEY_KP_DIVIDE => 331,
+        KEY_KP_MULTIPLY => 332,
+        KEY_KP_SUBTRACT => 333,
+        KEY_KP_ADD => 334,
+        KEY_KP_ENTER => 335,
+        KEY_KP_EQUAL => 336,
+        KEY_BACK => 4,
+        KEY_VOLUME_UP => 24,
+        KEY_VOLUME_DOWN => 25,
     }
 }

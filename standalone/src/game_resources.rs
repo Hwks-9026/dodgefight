@@ -1,8 +1,8 @@
+use crate::player_simple::PlayerSimple;
 use raylib::color::Color;
 use raylib::drawing::{RaylibDraw, RaylibDrawHandle};
 use raylib::math::Vector2;
 use raylib_sys::rlSetFramebufferHeight;
-use crate::player_simple::PlayerSimple;
 
 pub struct PlayerHitbox {
     pub hitbox: Rectangle,
@@ -20,19 +20,21 @@ impl PlayerHitbox {
 impl PlayerHitbox {
     pub fn new(x: f32, y: f32, width: f32, height: f32, color: Color) -> PlayerHitbox {
         PlayerHitbox {
-            hitbox:
-                Rectangle {
+            hitbox: Rectangle {
                 x: x - (0.5 * width),
                 y: (y - height),
                 width,
                 height,
-                color
-                }
+                color,
+            },
         }
     }
 
     pub fn get_pos(&self) -> Vector2 {
-        Vector2::new(self.hitbox.x + (self.hitbox.width * 0.5), self.hitbox.y + self.hitbox.height)
+        Vector2::new(
+            self.hitbox.x + (self.hitbox.width * 0.5),
+            self.hitbox.y + self.hitbox.height,
+        )
     }
 }
 
@@ -41,7 +43,7 @@ pub struct Rectangle {
     pub y: f32,
     pub width: f32,
     pub height: f32,
-    pub color: Color
+    pub color: Color,
 }
 
 impl Rectangle {
@@ -63,10 +65,18 @@ impl Rectangle {
     }
 
     pub fn place_meeting(&self, x: f32, y: f32) -> bool {
-        if(self.x > x) { return false; }
-        if(self.y > y) { return false; }
-        if(self.x + self.width < x) { return false; }
-        if(self.y + self.height < y) { return false; }
+        if (self.x > x) {
+            return false;
+        }
+        if (self.y > y) {
+            return false;
+        }
+        if (self.x + self.width < x) {
+            return false;
+        }
+        if (self.y + self.height < y) {
+            return false;
+        }
         true
     }
 
@@ -76,12 +86,18 @@ impl Rectangle {
             y,
             width,
             height,
-            color
+            color,
         }
     }
 
     pub fn draw(&self, d: &mut RaylibDrawHandle) {
-        d.draw_rectangle(self.x as i32, self.y as i32, self.width as i32, self.height as i32, self.color);
+        d.draw_rectangle(
+            self.x as i32,
+            self.y as i32,
+            self.width as i32,
+            self.height as i32,
+            self.color,
+        );
     }
 
     pub fn colliding_with(&self, other: &Rectangle) -> bool {
@@ -95,13 +111,19 @@ impl Rectangle {
         let b_w = self.width;
         let b_h = self.height;
 
-        if(b_x + b_w < a_x){return false}
-        if(b_y + b_h < a_y){return false}
-        if(b_x > a_x + a_w){return false}
-        if(b_y > a_y + a_h){return false}
+        if (b_x + b_w < a_x) {
+            return false;
+        }
+        if (b_y + b_h < a_y) {
+            return false;
+        }
+        if (b_x > a_x + a_w) {
+            return false;
+        }
+        if (b_y > a_y + a_h) {
+            return false;
+        }
 
         true
     }
-
-
 }

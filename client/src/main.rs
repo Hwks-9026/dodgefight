@@ -1,8 +1,8 @@
 extern crate core;
-mod keycode_conversion;
-mod gameloop;
 mod file_loader;
 mod game_resources;
+mod gameloop;
+mod keycode_conversion;
 mod settings;
 
 use crate::file_loader::load_settings;
@@ -17,5 +17,4 @@ fn main() {
         .build();
     rl.set_target_fps(settings.target_fps as u32);
     game_loop(rl, thread, settings);
-
 }

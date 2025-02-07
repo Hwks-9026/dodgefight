@@ -1,10 +1,10 @@
-use raylib::color::Color;
-use raylib::drawing::RaylibDrawHandle;
-use raylib::RaylibHandle;
-use raylib::math::Vector2;
-use raylib_sys::KeyboardKey::*;
 use crate::game_resources::{PlayerHitbox, Rectangle};
 use crate::settings::Settings;
+use raylib::color::Color;
+use raylib::drawing::RaylibDrawHandle;
+use raylib::math::Vector2;
+use raylib::RaylibHandle;
+use raylib_sys::KeyboardKey::*;
 
 const SUBPIXEL: f32 = 0.5;
 const BUFFERTIME: i32 = 15;
@@ -41,10 +41,7 @@ pub struct PlayerSimple {
     coyote_hang_timer: i32,
     coyote_jump_timer: i32,
 
-
     pub(crate) hitbox: PlayerHitbox,
-
-
 }
 
 impl PlayerSimple {
@@ -68,20 +65,23 @@ impl PlayerSimple {
             wall_jump_coyote_timer: 0,
             coyote_hang_timer: 0,
             coyote_jump_timer: 0,
-            hitbox: PlayerHitbox::new(starting_pos.x, starting_pos.y, 50.0, 100.0, Color::RED)
+            hitbox: PlayerHitbox::new(starting_pos.x, starting_pos.y, 50.0, 100.0, Color::RED),
         }
     }
 
-    pub fn update(&mut self, rl: &mut RaylibHandle, settings: &Settings, level_data: &Vec<Rectangle>) {
-
-        if(self.hitbox.hitbox.y > 1500.0 ) {
+    pub fn update(
+        &mut self,
+        rl: &mut RaylibHandle,
+        settings: &Settings,
+        level_data: &Vec<Rectangle>,
+    ) {
+        if (self.hitbox.hitbox.y > 1500.0) {
             self.hitbox.hitbox.x = 130.0;
             self.hitbox.hitbox.y = 800.0;
         }
         let binds = match self.which_player {
             1 => &settings.keybinds_1,
             _ => &settings.keybinds_2,
-
         };
 
         let left_key = to_1_0(rl.is_key_down(binds.left));
@@ -99,36 +99,33 @@ impl PlayerSimple {
         if self.jump_key_timer > 0 {
             self.jump_key_buffered = true;
             self.jump_key_timer -= 1;
-        }
-        else {
+        } else {
             self.jump_key_buffered = false;
         }
 
         self.x_update(level_data);
         self.y_update(level_data, jump_key);
 
-        if(self.jump_count > 1) {self.hitbox.hitbox.color = Color::YELLOW;}
-        else { self.hitbox.hitbox.color = Color::RED; }
-
+        if (self.jump_count > 1) {
+            self.hitbox.hitbox.color = Color::YELLOW;
+        } else {
+            self.hitbox.hitbox.color = Color::RED;
+        }
     }
 
     fn x_update(&mut self, level_data: &Vec<Rectangle>) {
-        if(self.x_speed.abs() < self.move_speed.abs()) {
+        if (self.x_speed.abs() < self.move_speed.abs()) {
             self.x_speed = self.move_dir as f32 * 0.1 * self.move_speed + 0.95 * self.x_speed;
-        }
-        else if (self.move_dir != 0){
+        } else if (self.move_dir != 0) {
             self.x_speed = self.move_dir as f32 * self.move_speed;
-        }
-        else {
+        } else {
             self.x_speed = 0.5 * self.x_speed;
         }
-
 
         let mut pos: Vector2 = self.hitbox.get_pos();
 
         //X Collision:
         if self.colliding(pos.x + self.x_speed, pos.y, level_data) {
-
             let pixel_check = SUBPIXEL * self.x_speed.signum();
 
             while !(self.colliding(pos.x + pixel_check, pos.y, level_data)) {
@@ -139,13 +136,11 @@ impl PlayerSimple {
             self.wall_jump_coyote_timer = COYOTEJUMPFRAMES;
 
             self.x_speed = 0.0;
-        }
-        else {
+        } else {
             println!("{}", self.wall_jump_coyote_timer);
             if self.wall_jump_coyote_timer > 0 {
                 self.wall_jump_coyote_timer -= 1;
-            }
-            else {
+            } else {
                 self.can_wall_jump = 0;
             }
         }
@@ -157,32 +152,29 @@ impl PlayerSimple {
         let mut pos: Vector2 = self.hitbox.get_pos();
         if self.coyote_hang_timer < COYOTEHANGFRAMES {
             self.coyote_hang_timer += 1;
-        }
-        else {
+        } else {
             self.y_speed += self.gravity;
             self.set_on_ground(false)
         }
 
-
         if (self.on_ground) {
             self.jump_count = 0;
             self.coyote_jump_timer = COYOTEJUMPFRAMES;
-        }
-        else {
+        } else {
             self.coyote_jump_timer -= 1;
             if self.coyote_jump_timer == 0 {
                 self.jump_count = 1;
             }
         }
 
-        if(self.y_speed > self.terminal_velocity) { self.y_speed = self.terminal_velocity; }
+        if (self.y_speed > self.terminal_velocity) {
+            self.y_speed = self.terminal_velocity;
+        }
 
         //Initiate Jump
         if (self.jump_key_buffered && (self.jump_count < MAXJUMPS || self.can_wall_jump != 0)) {
             self.jump_key_buffered = false;
             self.jump_key_timer = 0;
-
-
 
             self.jump_hold_timer = JUMPHOLDFRAMES;
             self.set_on_ground(false);
@@ -190,21 +182,21 @@ impl PlayerSimple {
             match self.can_wall_jump {
                 1 => self.x_speed += 100.0,
                 -1 => self.x_speed -= 100.0,
-                _ => {self.jump_count += 1;}
+                _ => {
+                    self.jump_count += 1;
+                }
             }
         }
 
         if !(jump_key) {
             self.jump_hold_timer = 0;
         }
-        if(self.jump_hold_timer > 0) {
+        if (self.jump_hold_timer > 0) {
             self.jump_hold_timer -= 1;
             self.y_speed = -1.0 * compute_jump_height(self.jump_hold_timer);
         }
 
-
         if self.colliding(pos.x, pos.y + self.y_speed, level_data) {
-
             let pixel_check = SUBPIXEL * self.y_speed.signum();
 
             while !(self.colliding(pos.x, pos.y + pixel_check, level_data)) {
@@ -215,7 +207,7 @@ impl PlayerSimple {
             self.y_speed = 0.0;
         };
         if self.colliding(pos.x, pos.y + 1.0, level_data) && self.y_speed >= 0.0 {
-           self.set_on_ground(true)
+            self.set_on_ground(true)
         }
 
         self.hitbox.move_y(self.y_speed);
@@ -225,8 +217,7 @@ impl PlayerSimple {
         if value {
             self.on_ground = true;
             self.coyote_hang_timer = 0;
-        }
-        else {
+        } else {
             self.on_ground = false;
         }
     }
@@ -237,21 +228,23 @@ impl PlayerSimple {
             let mut test_x = x;
             if rect.y + rect.height < y {
                 test_y = y - self.hitbox.hitbox.height;
-                if(test_y < rect.y + rect.height) {
-                    test_y = rect.y + (rect.height/2.0);
+                if (test_y < rect.y + rect.height) {
+                    test_y = rect.y + (rect.height / 2.0);
                 }
             }
 
-
-            if rect.x > test_x && rect.x < test_x + self.hitbox.hitbox.width/2.0 {
+            if rect.x > test_x && rect.x < test_x + self.hitbox.hitbox.width / 2.0 {
                 test_x = rect.x + 1.0;
             }
-            if rect.x + rect.width < test_x && rect.x + rect.width > test_x - self.hitbox.hitbox.width/2.0 {
+            if rect.x + rect.width < test_x
+                && rect.x + rect.width > test_x - self.hitbox.hitbox.width / 2.0
+            {
                 test_x = rect.x + rect.width - 1.0;
             }
 
-
-            if rect.place_meeting(test_x, test_y) {return true}
+            if rect.place_meeting(test_x, test_y) {
+                return true;
+            }
         }
         false
     }
@@ -260,8 +253,6 @@ impl PlayerSimple {
         self.hitbox.hitbox.draw(d)
     }
 }
-
-
 
 fn to_1_0(b: bool) -> i32 {
     match b {

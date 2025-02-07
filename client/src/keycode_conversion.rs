@@ -10,7 +10,7 @@ macro_rules! invert_match {
     };
 }
 
-pub fn code_to_key(i: i32) -> Option<KeyboardKey>{
+pub fn code_to_key(i: i32) -> Option<KeyboardKey> {
     let input = i;
     invert_match!(input,
         KEY_NULL => 0,

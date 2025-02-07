@@ -17,19 +17,21 @@ impl PlayerHitbox {
 impl PlayerHitbox {
     pub fn new(x: f32, y: f32, width: f32, height: f32, color: Color) -> PlayerHitbox {
         PlayerHitbox {
-            hitbox:
-                Rectangle {
+            hitbox: Rectangle {
                 x: x - (0.5 * width),
                 y: (y - height),
                 width,
                 height,
-                color
-                }
+                color,
+            },
         }
     }
 
     pub fn get_pos(&self) -> Vector2 {
-        Vector2::new(self.hitbox.x + (self.hitbox.width * 0.5), self.hitbox.y + self.hitbox.height)
+        Vector2::new(
+            self.hitbox.x + (self.hitbox.width * 0.5),
+            self.hitbox.y + self.hitbox.height,
+        )
     }
 }
 #[derive(Clone, Debug)]
@@ -38,9 +40,8 @@ pub struct Rectangle {
     pub y: f32,
     pub width: f32,
     pub height: f32,
-    pub color: Color
+    pub color: Color,
 }
-
 
 impl Rectangle {
     pub(crate) fn clone(&self) -> Rectangle {
@@ -56,10 +57,18 @@ impl Rectangle {
 
 impl Rectangle {
     pub fn place_meeting(&self, x: f32, y: f32) -> bool {
-        if self.x > x { return false; }
-        if self.y > y { return false; }
-        if self.x + self.width < x { return false; }
-        if self.y + self.height < y { return false; }
+        if self.x > x {
+            return false;
+        }
+        if self.y > y {
+            return false;
+        }
+        if self.x + self.width < x {
+            return false;
+        }
+        if self.y + self.height < y {
+            return false;
+        }
         true
     }
 
@@ -69,8 +78,7 @@ impl Rectangle {
             y,
             width,
             height,
-            color
+            color,
         }
     }
-
 }
