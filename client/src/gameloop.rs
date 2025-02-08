@@ -21,7 +21,7 @@ pub(crate) fn game_loop(mut rl: RaylibHandle, thread: RaylibThread, settings: Se
         packet += &*to_1_0(rl.is_key_down(binds.jump)).to_string();
         packet += &*(player_number).to_string();
         let mut stream: TcpStream =
-            TcpStream::connect("127.0.0.1:9999").expect("Could not connect to server");
+            TcpStream::connect("127.0.0.1:9998").expect("Could not connect to server");
         _ = stream.write(packet.as_bytes());
         _ = stream.flush().expect("Could not flush stream");
         let mut read_buffer = [0; 4096];

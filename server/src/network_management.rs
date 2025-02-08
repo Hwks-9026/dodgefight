@@ -12,7 +12,7 @@ const LEVELTOTRANSMIT: &str = include_str!("level1ForNetworking.txt");
 pub(crate) fn start() {
     let level_data = load_level(1);
     let mut players: Vec<PlayerSimple> = Vec::with_capacity(2);
-    let listener = TcpListener::bind("127.0.0.1:9999").expect("Could not bind on port 8080");
+    let listener = TcpListener::bind("127.0.0.1:9998").expect("Could not bind on port 8080");
     println!("Listening on {}", listener.local_addr().unwrap());
     let mut prev_update_time = Instant::now();
     for stream in listener.incoming() {
