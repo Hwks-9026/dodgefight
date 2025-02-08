@@ -20,5 +20,5 @@ fn main() {
         .title("rust_game")
         .build();
     rl.set_target_fps(settings.target_fps as u32);
-    game_loop(rl, thread, settings, args[1]);
+    game_loop(rl, thread, settings, args[1].clone());
 }
