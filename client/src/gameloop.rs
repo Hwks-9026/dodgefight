@@ -25,6 +25,7 @@ pub(crate) fn game_loop(mut rl: RaylibHandle, thread: RaylibThread, settings: Se
         _ = stream.write(packet.as_bytes());
         _ = stream.flush().expect("Could not flush stream");
         let mut read_buffer = [0; 4096];
+
         stream
             .read(&mut read_buffer)
             .expect("Could not read from server");
@@ -52,12 +53,7 @@ fn terminate_connection(player_number: u8) {
     _ = stream.write(packet.as_bytes());
     _ = stream.flush().expect("Could not flush stream");
 }
-fn draw_frame(
-    rl: &mut RaylibHandle,
-    thread: &RaylibThread,
-    settings: &Settings,
-    level_data: &Vec<Rectangle>,
-) {
+fn draw_frame(rl: &mut RaylibHandle, thread: &RaylibThread, settings: &Settings, level_data: &Vec<Rectangle>) {
     let mut d: RaylibDrawHandle = rl.begin_drawing(&thread);
     d.clear_background(Color::BLACK);
 
