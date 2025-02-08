@@ -14,11 +14,8 @@ use crate::settings::Settings;
 use gameloop::game_loop;
 use raylib::consts::KeyboardKey::*;
 use raylib::prelude::*;
-use serde_json::{value, Value};
-use std::fs::File;
 use std::io::Write;
 use std::ops::Add;
-use std::path::Path;
 use std::str::FromStr;
 fn main() {
     let settings: Settings = load_settings();
